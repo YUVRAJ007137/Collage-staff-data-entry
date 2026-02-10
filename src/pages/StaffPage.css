@@ -1,0 +1,57 @@
+.staff-page {
+  background: linear-gradient(135deg, #422006 0%, #713f12 50%, #854d0e 100%);
+}
+
+.staff-page .role-content h2 {
+  margin: 0 0 1rem 0;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.staff-loading,
+.staff-empty {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.subject-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.subject-box {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.subject-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-color: rgba(251, 191, 36, 0.5);
+}
+
+.subject-box h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.subject-class {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+  border-radius: 4px;
+}
+
+.subject-box-hint {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
