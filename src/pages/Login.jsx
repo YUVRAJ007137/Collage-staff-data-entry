@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import './Login.css'
@@ -56,9 +57,40 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <div className="login-card">
-        <h1>Login</h1>
-        <p className="login-subtitle">Sign in as Admin, Staff, or Student</p>
+      {/* Cinematic animated background layers */}
+      <div className="login-bg-gradient" />
+      <motion.div
+        className="login-orbit login-orbit-1"
+        animate={{ x: ['-5%', '5%', '-5%'], y: ['-5%', '5%', '-5%'] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="login-orbit login-orbit-2"
+        animate={{ x: ['5%', '-5%', '5%'], y: ['10%', '-10%', '10%'] }}
+        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      <motion.div
+        className="login-hero"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: 'easeOut' }}
+      >
+        <h1 className="login-title">College Staff Portal</h1>
+        <p className="login-tagline">
+          Manage classes, subjects, and syllabus progress with a cinematic dashboard built
+          for staff and students.
+        </p>
+      </motion.div>
+
+      <motion.div
+        className="login-card"
+        initial={{ opacity: 0, y: 60, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+      >
+        <h2>Sign in</h2>
+        <p className="login-subtitle">Admin, Staff, and Student access</p>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -89,7 +121,7 @@ export default function Login() {
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
-      </div>
+      </motion.div>
     </div>
   )
 }
