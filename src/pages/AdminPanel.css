@@ -35,6 +35,35 @@
   background: rgba(239, 68, 68, 1);
 }
 
+.admin-tabs {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-button:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tab-button.active {
+  color: #fff;
+  border-bottom-color: #6366f1;
+}
+
 .admin-content {
   padding: 2rem;
 }
@@ -339,4 +368,246 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* === MONTHLY REPORTS SECTION === */
+
+.monthly-reports-section {
+  padding: 0;
+}
+
+.reports-nav-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.reports-nav-btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.reports-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.reports-nav-btn.active {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+  border-color: transparent;
+}
+
+.reports-content {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-section {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.tab-section h2 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+.tab-section h3 {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 1.5rem 0 1rem 0;
+}
+
+.data-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.data-form-grid input,
+.data-form-grid select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: #fff;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.data-form-grid select option {
+  background: #1e293b;
+  color: #fff;
+  padding: 0.5rem;
+}
+
+.data-form-grid input:focus,
+.data-form-grid select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.data-form-grid input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.submit-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.records-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.records-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.records-table thead {
+  background: rgba(99, 102, 241, 0.15);
+  border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+.records-table th {
+  padding: 1rem 0.75rem;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.records-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.2s;
+}
+
+.records-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.records-table td {
+  padding: 0.9rem 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-delete-small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.btn-delete-small:hover {
+  background: rgba(239, 68, 68, 0.35);
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.btn-edit-small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.btn-edit-small:hover {
+  background: rgba(59, 130, 246, 0.35);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.btn-cancel-form {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn-cancel-form:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.btn-export {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-export:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
 }

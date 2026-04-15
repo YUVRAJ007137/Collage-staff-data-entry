@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import AdminDataManagement from '../components/AdminDataManagement'
 import './AdminPanel.css'
 
 export default function AdminPanel() {
   const navigate = useNavigate()
+  const [activeTab, setActiveTab] = useState('users')
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [createUsername, setCreateUsername] = useState('')
@@ -108,7 +110,26 @@ export default function AdminPanel() {
         <h1>Admin Panel</h1>
         <button onClick={handleLogout} className="logout-btn">Logout</button>
       </header>
+
+      {/* Tab Navigation */}
+      <div className="admin-tabs">
+        <button 
+          className={`tab-button ${activeTab === 'users' ? 'active' : ''}`}
+          onClick={() => setActiveTab('users')}
+        >
+          User Management
+        </button>
+        <button 
+          className={`tab-button ${activeTab === 'reports' ? 'active' : ''}`}
+          onClick={() => setActiveTab('reports')}
+        >
+          Monthly Reports
+        </button>
+      </div>
+
       <main className="admin-content">
+        {/* User Management Tab */}
+        {activeTab === 'users' && (
         <div className="feature-grid">
           <div className="feature-box">
             <h3>Create User</h3>
@@ -206,6 +227,12 @@ export default function AdminPanel() {
             )}
           </div>
         </div>
+        )}
+
+        {/* Monthly Reports Tab */}
+        {activeTab === 'reports' && (
+          <AdminDataManagement />
+        )}
       </main>
 
       {editUser && (
