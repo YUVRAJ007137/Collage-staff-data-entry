@@ -2,6 +2,71 @@
   background: linear-gradient(135deg, #422006 0%, #713f12 50%, #854d0e 100%);
 }
 
+.staff-page .role-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.staff-page .role-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.staff-page .logout-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+  background: rgba(239, 68, 68, 0.8);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.staff-page .logout-btn:hover {
+  background: rgba(239, 68, 68, 1);
+}
+
+.staff-tabs {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.staff-tabs .tab-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.staff-tabs .tab-button:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.staff-tabs .tab-button.active {
+  color: #fff;
+  border-bottom-color: #fbbf24;
+}
+
+.staff-page .role-content {
+  padding: 2rem;
+}
+
 .staff-page .role-content h2 {
   margin: 0 0 1rem 0;
   color: #fff;

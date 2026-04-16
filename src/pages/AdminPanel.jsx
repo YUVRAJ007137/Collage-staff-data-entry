@@ -179,7 +179,27 @@ export default function AdminPanel() {
           </div>
 
           <div className="feature-box feature-box-full">
-            <h3>User List</h3>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <h3>User List</h3>
+              <button 
+                onClick={fetchUsers}
+                style={{
+                  padding: '0.5rem 1rem',
+                  backgroundColor: '#6366f1',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  transition: 'background 0.2s'
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#4f46e5'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = '#6366f1'}
+              >
+                ↻ Refresh
+              </button>
+            </div>
             <p>Manage users: edit, activate/deactivate, or delete.</p>
             {loading ? (
               <p className="user-list-loading">Loading...</p>

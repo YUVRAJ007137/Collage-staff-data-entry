@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import AdminDataManagement from '../components/AdminDataManagement'
 import './StaffPage.css'
 
 const CLASS_LABELS = { fe: 'FE', se: 'SE', te: 'TE', be: 'BE' }
@@ -11,6 +12,7 @@ export default function StaffPage() {
   const staffId = localStorage.getItem('userId')
   const [subjects, setSubjects] = useState([])
   const [loading, setLoading] = useState(true)
+  const [activeTab, setActiveTab] = useState('subjects')
 
   useEffect(() => {
     if (!staffId) {
@@ -51,26 +53,53 @@ export default function StaffPage() {
           <button onClick={handleLogout} className="logout-btn">Logout</button>
         </div>
       </header>
+
+      {/* Tab Navigation */}
+      <div className="staff-tabs">
+        <button 
+          className={`tab-button ${activeTab === 'subjects' ? 'active' : ''}`}
+          onClick={() => setActiveTab('subjects')}
+        >
+          My Subjects
+        </button>
+        <button 
+          className={`tab-button ${activeTab === 'reports' ? 'active' : ''}`}
+          onClick={() => setActiveTab('reports')}
+        >
+          Monthly Reports
+        </button>
+      </div>
+
       <main className="role-content">
-        <h2>My Subjects</h2>
-        {loading ? (
-          <p className="staff-loading">Loading...</p>
-        ) : subjects.length === 0 ? (
-          <p className="staff-empty">No subjects assigned yet. Contact admin.</p>
-        ) : (
-          <div className="subject-boxes">
-            {subjects.map((subject) => (
-              <div
-                key={subject.id}
-                className="subject-box"
-                onClick={() => handleSubjectClick(subject)}
-              >
-                <h3>{subject.name}</h3>
-                <span className="subject-class">{CLASS_LABELS[subject.class] || subject.class}</span>
-                <span className="subject-box-hint">Click to fill progress</span>
+        {/* My Subjects Tab */}
+        {activeTab === 'subjects' && (
+          <>
+            <h2>My Subjects</h2>
+            {loading ? (
+              <p className="staff-loading">Loading...</p>
+            ) : subjects.length === 0 ? (
+              <p className="staff-empty">No subjects assigned yet. Contact admin.</p>
+            ) : (
+              <div className="subject-boxes">
+                {subjects.map((subject) => (
+                  <div
+                    key={subject.id}
+                    className="subject-box"
+                    onClick={() => handleSubjectClick(subject)}
+                  >
+                    <h3>{subject.name}</h3>
+                    <span className="subject-class">{CLASS_LABELS[subject.class] || subject.class}</span>
+                    <span className="subject-box-hint">Click to fill progress</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            )}
+          </>
+        )}
+
+        {/* Monthly Reports Tab */}
+        {activeTab === 'reports' && (
+          <AdminDataManagement />
         )}
       </main>
     </div>

@@ -1,36 +1,28 @@
 -- Run this in Supabase SQL Editor (Dashboard > SQL Editor)
 -- Creates the users table and login function for student/staff
 
+-- Drop policies first (to avoid conflicts when recreating table)
+DROP POLICY IF EXISTS "Allow insert app_users" ON app_users;
+DROP POLICY IF EXISTS "Allow select app_users" ON app_users;
+DROP POLICY IF EXISTS "Allow update app_users" ON app_users;
+DROP POLICY IF EXISTS "Allow delete app_users" ON app_users;
+
+-- Drop and recreate table to ensure clean state
+DROP TABLE IF EXISTS app_users CASCADE;
+
 -- Table for admin-created users (students and staff)
-CREATE TABLE IF NOT EXISTS app_users (
+CREATE TABLE app_users (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   username TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
   role TEXT NOT NULL CHECK (role IN ('student', 'staff')),
   active BOOLEAN DEFAULT true,
+  class TEXT CHECK (class IN ('fe', 'se', 'te', 'be')),
   created_at TIMESTAMPTZ DEFAULT now()
 );
 
--- Add active column if table already exists (run once if migrating)
-DO $$ BEGIN
-  ALTER TABLE app_users ADD COLUMN IF NOT EXISTS active BOOLEAN DEFAULT true;
-EXCEPTION WHEN OTHERS THEN NULL;
-END $$;
-
--- Add class column for students (fe/se/te/be)
-DO $$ BEGIN
-  ALTER TABLE app_users ADD COLUMN IF NOT EXISTS class TEXT CHECK (class IN ('fe', 'se', 'te', 'be'));
-EXCEPTION WHEN OTHERS THEN NULL;
-END $$;
-
 -- Enable RLS
 ALTER TABLE app_users ENABLE ROW LEVEL SECURITY;
-
--- Drop existing policies if re-running (ignore errors)
-DROP POLICY IF EXISTS "Allow insert app_users" ON app_users;
-DROP POLICY IF EXISTS "Allow select app_users" ON app_users;
-DROP POLICY IF EXISTS "Allow update app_users" ON app_users;
-DROP POLICY IF EXISTS "Allow delete app_users" ON app_users;
 
 -- Policies for admin panel
 CREATE POLICY "Allow insert app_users" ON app_users FOR INSERT WITH CHECK (true);
